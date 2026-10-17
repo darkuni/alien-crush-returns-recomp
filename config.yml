@@ -1,0 +1,8 @@
+object: orig/WE9E/main.dol
+hash: 303ed4e0941a55e1a4aa57f7cec65cc9a864f1c0
+symbols: config/symbols.txt
+splits: config/splits.txt
+detect_objects: true
+detect_strings: true
+write_asm: true
+quick_analysis: false
