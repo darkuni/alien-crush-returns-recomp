@@ -78,9 +78,11 @@ void hle_OSSaveContext(Ctx* c) {
 struct ThreadExit {};
 static thread_local bool t_exiting = false;
 
+void gl_platform_release();
 static void switch_to(HThread* next) {
     HThread* me = t_self;
     if (next == me) return;
+    gl_platform_release();   // the next thread may do GX work (the GL context is one thread's at a time)
     g_switches++;
     if (g_dbg) fprintf(g_log, "[sched] %08X -> %08X%s\n", me->guest_ctx, next->guest_ctx, t_exiting ? " (exit)" : "");
     next->go = true;
